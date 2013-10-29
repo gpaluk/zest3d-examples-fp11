@@ -3,7 +3,6 @@ package plugin.examples.billboard
 	import flash.events.MouseEvent;
 	import zest3d.applications.Zest3DApplication;
 	import zest3d.detail.BillboardNode;
-	import zest3d.detail.DlodNode;
 	import zest3d.effects.ReflectionEffect;
 	import zest3d.primitives.TorusPrimitive;
 	import zest3d.resources.TextureCube;
