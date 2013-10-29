@@ -33,7 +33,6 @@ package plugin.examples.oimo
 		private var ParticleTexture:Class;
 		
 		private var _oimoWorld:Zest3DOimo;
-		private var _tf:TextField;
 		
 		override public function initialize():void 
 		{
@@ -105,7 +104,7 @@ package plugin.examples.oimo
 				var cylinderConfig:ShapeConfig = new ShapeConfig();
 				cylinderConfig.position.init( (Math.random()*10)-5, ( -Math.random() * 1500)-5, (Math.random()*10)-5 );
 				
-				cylinderConfig.rotation = cylinderConfig.rotation.mulRotate( cylinderConfig.rotation, 90 * (Math.PI / 180), 1, 0, 0 ); // make the Zest3D and Oimo cylinders oriention the same.
+				cylinderConfig.rotation = cylinderConfig.rotation.mulRotate( cylinderConfig.rotation, 90 * (Math.PI / 180), 1, 0, 0 ); // make the Zest3D and Oimo cylinders orientation the same.
 				
 				var cylinderShape:CylinderShape = new CylinderShape( 1, 2, cylinderConfig );
 				var cylinderMesh3D:OimoMesh3D = new OimoMesh3D( cylinderShape, cylinder );
