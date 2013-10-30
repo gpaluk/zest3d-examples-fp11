@@ -1,4 +1,4 @@
-package plugin.examples.oimo.helpers
+package plugin.examples.particle.helpers
 {
 	import flash.utils.ByteArray;
 	import io.plugin.core.interfaces.IDisposable;
@@ -35,33 +35,45 @@ package plugin.examples.oimo.helpers
 			var j: int;
 			for ( i = 0, j = 0; i < numParticles; ++i, j += 16 )
 			{
-				var symRand0: Number = symmetricRandom() * 0.005;
+				var symRand0: Number = symmetricRandom() * 0.01;
 				var newPosSize0: Number = posSizes.readFloat() + symRand0;
 				if ( newPosSize0 > 1 )
 				{
 					newPosSize0 = 1;
 				}
+				else if (newPosSize0 < -1 )
+				{
+					newPosSize0 = -1;
+				}
 				
-				var symRand1: Number = symmetricRandom() * 0.005;
+				var symRand1: Number = symmetricRandom() * 0.01;
 				var newPosSize1: Number = posSizes.readFloat() + symRand1;
 				if ( newPosSize1 > 1 )
 				{
 					newPosSize1 = 1;
 				}
+				else if( newPosSize1 < -1 )
+				{
+					newPosSize1 = -1;
+				}
 				
-				var symRand2: Number = symmetricRandom() * 0.005;
+				var symRand2: Number = symmetricRandom() * 0.01;
 				var newPosSize2: Number = posSizes.readFloat() + symRand2;
 				if ( newPosSize2 > 1 )
 				{
 					newPosSize2 = 1;
 				}
-				
-				
-				var symRand3: Number = 1 + (0.005 * symmetricRandom());
-				var newPosSize3: Number = posSizes.readFloat() * symRand3;
-				if ( newPosSize3 > 0.25 )
+				else if( newPosSize2 < -1 )
 				{
-					newPosSize3 = 0.25;
+					newPosSize2 = -1;
+				}
+				
+				
+				var symRand3: Number = (1 + 0.01 * symmetricRandom());
+				var newPosSize3: Number = posSizes.readFloat() *= symRand3;
+				if ( newPosSize3 > 0.5 )
+				{
+					newPosSize3 = 0.5;
 				}
 				
 				posSizes.position = j;
@@ -76,7 +88,7 @@ package plugin.examples.oimo.helpers
 		
 		private function symmetricRandom(): Number
 		{
-			return ((Math.random()) -0.5);
+			return Math.random() -0.5;
 		}
 	}
 
