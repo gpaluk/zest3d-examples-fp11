@@ -1,7 +1,5 @@
 package plugin.examples.particle 
 {
-	import flash.display.StageAlign;
-	import flash.display.StageScaleMode;
 	import flash.utils.ByteArray;
 	import zest3d.applications.Zest3DApplication;
 	import zest3d.effects.Texture2DEffect;
