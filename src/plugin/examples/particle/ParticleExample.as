@@ -1,6 +1,7 @@
 package plugin.examples.particle 
 {
 	import flash.utils.ByteArray;
+	import io.plugin.math.algebra.APoint;
 	import zest3d.applications.Zest3DApplication;
 	import zest3d.effects.Texture2DEffect;
 	import zest3d.geometry.ParticleGeometry;
@@ -17,26 +18,35 @@ package plugin.examples.particle
 		[Embed(source = "../../../assets/atf/particle.atf", mimeType = "application/octet-stream")]
 		private var ParticleATF:Class;
 		
+		private var _particles:ParticleGeometry;
 		override public function initialize():void 
 		{
+			_camera.position = new APoint( 0, 0, -8 );
+			
 			var particleTexture:Texture2D = Texture2D.fromByteArray( new ParticleATF() );
 			var particleEffect:Texture2DEffect = new Texture2DEffect( particleTexture );
 			
-			var numParticles:int = 2000;
+			var numParticles:int = 500;
 			var positionSizes:ByteArray = new ByteArray();
 			for ( var i:Number = 0; i < numParticles; ++i )
 			{
 				positionSizes.writeFloat( (Math.random()-0.5) ); //x
 				positionSizes.writeFloat( (Math.random()-0.5) ); //y
 				positionSizes.writeFloat( (Math.random()-0.5) ); //z
-				positionSizes.writeFloat( (Math.random() * 0.5) ); // scaler
+				positionSizes.writeFloat( (Math.random() * 1) ); // scaler
 			}
 			
-			var particles:ParticleGeometry = new ParticleGeometry( particleEffect, numParticles, positionSizes );
-			particles.scaleUniform = 10;
-			particles.addController( new RandomParticleController() );
+			_particles = new ParticleGeometry( particleEffect, numParticles, positionSizes );
+			_particles.scaleUniform = 10;
 			
-			scene.addChild( particles );
+			// _particles.addController( new RandomParticleController() ); 
+			
+			scene.addChild( _particles );
+		}
+		
+		override protected function update(appTime:Number):void 
+		{
+			_particles.rotationY = appTime * 0.001;
 		}
 	}
 }
