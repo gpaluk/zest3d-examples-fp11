@@ -24,10 +24,10 @@ package plugin.examples.billboard
 			var skyTexture:TextureCube = TextureCube.fromByteArray( new SkyboxATF() );
 			var reflectionEffect:ReflectionEffect = new ReflectionEffect( skyTexture );
 			
-			var torus:PlanePrimitive = new PlanePrimitive( reflectionEffect, false, true, 2, 2, 1, 1 );
+			var plane:PlanePrimitive = new PlanePrimitive( reflectionEffect, false, true );
 			
 			var billboard:BillboardNode = new BillboardNode( _camera );
-			billboard.addChild( torus );
+			billboard.addChild( plane );
 			scene.addChild( billboard );
 		}
 		
