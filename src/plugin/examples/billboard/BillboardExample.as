@@ -4,7 +4,7 @@ package plugin.examples.billboard
 	import zest3d.applications.Zest3DApplication;
 	import zest3d.detail.BillboardNode;
 	import zest3d.effects.ReflectionEffect;
-	import zest3d.primitives.TorusPrimitive;
+	import zest3d.primitives.PlanePrimitive;
 	import zest3d.resources.TextureCube;
 	
 	/**
@@ -19,12 +19,12 @@ package plugin.examples.billboard
 		[Embed(source="../../../assets/atf/skybox.atf", mimeType="application/octet-stream")]
 		private var SkyboxATF:Class;
 		
-		override public function initialize():void 
+		override public function initialize():void
 		{
 			var skyTexture:TextureCube = TextureCube.fromByteArray( new SkyboxATF() );
 			var reflectionEffect:ReflectionEffect = new ReflectionEffect( skyTexture );
 			
-			var torus:TorusPrimitive = new TorusPrimitive( reflectionEffect, false, true, 128, 64 );
+			var torus:PlanePrimitive = new PlanePrimitive( reflectionEffect, false, true, 2, 2, 1, 1 );
 			
 			var billboard:BillboardNode = new BillboardNode( _camera );
 			billboard.addChild( torus );
