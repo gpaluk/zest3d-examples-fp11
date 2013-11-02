@@ -36,6 +36,8 @@ package plugin.examples.oimo
 		
 		override public function initialize():void 
 		{
+			clearColor = Color.fromHexRGB( 0xFFFFFF );
+			
 			// set the camera position
 			_camera.position = new APoint( 0, -10, -30 );
 			
@@ -118,5 +120,6 @@ package plugin.examples.oimo
 		{
 			_oimoWorld.step();
 		}
+		
 	}
 }

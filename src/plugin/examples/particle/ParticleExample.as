@@ -5,7 +5,7 @@ package plugin.examples.particle
 	import zest3d.applications.Zest3DApplication;
 	import zest3d.effects.Texture2DEffect;
 	import zest3d.geometry.ParticleGeometry;
-	import zest3d.RandomParticleController;
+	//import zest3d.RandomParticleController;
 	import zest3d.resources.Texture2D;
 	
 	/**

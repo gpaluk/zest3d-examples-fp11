@@ -70,7 +70,7 @@ package plugin.examples.particle.helpers
 				
 				
 				var symRand3: Number = (1 + 0.01 * symmetricRandom());
-				var newPosSize3: Number = posSizes.readFloat() *= symRand3;
+				var newPosSize3: Number = posSizes.readFloat() * symRand3;
 				if ( newPosSize3 > 0.5 )
 				{
 					newPosSize3 = 0.5;
