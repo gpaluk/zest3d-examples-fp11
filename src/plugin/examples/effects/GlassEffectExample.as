@@ -15,7 +15,7 @@ package plugin.examples.effects
 	public class GlassEffectExample extends Zest3DApplication 
 	{
 		
-		[Embed(source="E:/My Flash Documents/Zest3D Testing/lib/skybox.atf", mimeType="application/octet-stream")]
+		[Embed(source="../../../assets/atf/skybox.atf", mimeType="application/octet-stream")]
 		private var SkyboxATF:Class;
 		
 		private var _torus0:TorusPrimitive;
@@ -39,7 +39,6 @@ package plugin.examples.effects
 			scene.addChild( _torus2 );
 			
 			skybox = new SkyboxGeometry( skyTexture );
-			skybox.rotationX = 180 * (Math.PI/180)
 		}
 		
 		override protected function update(appTime:Number):void 

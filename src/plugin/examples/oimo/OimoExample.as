@@ -13,9 +13,12 @@ package plugin.examples.oimo
 	import plugin.examples.oimo.helpers.Zest3DOimo;
 	import zest3d.applications.Zest3DApplication;
 	import zest3d.effects.SkyboxEffect;
+	import zest3d.effects.Texture2DEffect;
+	import zest3d.geometry.SkyboxGeometry;
 	import zest3d.primitives.CubePrimitive;
 	import zest3d.primitives.CylinderPrimitive;
 	import zest3d.primitives.SpherePrimitive;
+	import zest3d.resources.Texture2D;
 	import zest3d.resources.TextureCube;
 	import zest3d.scenegraph.enum.CullingType;
 	import zest3d.scenegraph.TriMesh;
@@ -26,8 +29,12 @@ package plugin.examples.oimo
 	 */
 	public class OimoExample extends Zest3DApplication 
 	{
-		[Embed(source="../../../assets/atf/skybox.atf", mimeType="application/octet-stream")]
+		
+		[Embed(source = "../../../assets/atf/skybox.atf", mimeType = "application/octet-stream")]
 		private var SkyboxTexture:Class;
+		
+		[Embed(source="../../../assets/atf/space.atf", mimeType="application/octet-stream")]
+		private var SpaceTexture:Class;
 		
 		[Embed(source="../../../assets/atf/particle.atf", mimeType="application/octet-stream")]
 		private var ParticleTexture:Class;
@@ -49,14 +56,17 @@ package plugin.examples.oimo
 			clearColor = new Color( 0, 0, 0, 1 );
 			
 			// create texture and effect
-			var textureCube:TextureCube = TextureCube.fromByteArray( new SkyboxTexture() );
-			var skyboxEffect:SkyboxEffect = new SkyboxEffect( textureCube );
+			var spaceTexture:Texture2D = Texture2D.fromByteArray( new SpaceTexture() );
+			var spaceEffect:Texture2DEffect = new Texture2DEffect( spaceTexture );
+			
+			var skyboxTexture:TextureCube = TextureCube.fromByteArray( new SkyboxTexture() );
+			
 			
 			// Oimo
 			_oimoWorld = new Zest3DOimo( 30 );
 			
 			// Add Ground
-			var plane:CubePrimitive = new CubePrimitive( skyboxEffect, false, false, 10, 10, 10 );
+			var plane:CubePrimitive = new CubePrimitive( spaceEffect, true, false, 10, 10, 10 );
 			plane.culling = CullingType.NEVER;
 			scene.addChild( plane );
 			
@@ -71,7 +81,7 @@ package plugin.examples.oimo
 			// Add Boxes
 			for ( i = 0; i < 300; ++i )
 			{
-				var cube:CubePrimitive = new CubePrimitive( skyboxEffect, false, false, 1, 1, 1, false ); 
+				var cube:CubePrimitive = new CubePrimitive( spaceEffect, true, false, 1, 1, 1, false ); 
 				scene.addChild( cube );
 				
 				var cubeConfig:ShapeConfig = new ShapeConfig();
@@ -86,7 +96,7 @@ package plugin.examples.oimo
 			// Add Spheres
 			for ( i = 0; i < 300; ++i )
 			{
-				var sphere:SpherePrimitive = new SpherePrimitive( skyboxEffect, false, false, 16, 16, 1, false, false );
+				var sphere:SpherePrimitive = new SpherePrimitive( spaceEffect, true, false, 16, 16, 1, false, false );
 				scene.addChild( sphere );
 				
 				var sphereConfig:ShapeConfig = new ShapeConfig();
@@ -101,7 +111,7 @@ package plugin.examples.oimo
 			// Add Cylinders
 			for ( i = 0; i < 300; ++i )
 			{
-				var cylinder:CylinderPrimitive = new CylinderPrimitive( skyboxEffect, false, false, 4, 16, 1, 2, false, false, false );
+				var cylinder:CylinderPrimitive = new CylinderPrimitive( spaceEffect, true, false, 4, 16, 1, 2, false, false, false );
 				scene.addChild( cylinder );
 				var cylinderConfig:ShapeConfig = new ShapeConfig();
 				cylinderConfig.position.init( (Math.random()*10)-5, ( -Math.random() * 1500)-5, (Math.random()*10)-5 );
@@ -114,6 +124,8 @@ package plugin.examples.oimo
 				cylinderMesh3D.restitution = 0.5;
 				_oimoWorld.addChild( cylinderMesh3D );
 			}
+			
+			skybox = new SkyboxGeometry( skyboxTexture );
 		}
 		
 		override protected function update(appTime:Number):void 
