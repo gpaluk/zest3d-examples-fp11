@@ -9,9 +9,11 @@ package plugin.examples.oimo
 	import io.plugin.core.graphics.Color;
 	import io.plugin.math.algebra.APoint;
 	import io.plugin.utils.Stats;
+	import plugin.examples.effects.PhongTexture2DEffectExample;
 	import plugin.examples.oimo.helpers.OimoMesh3D;
 	import plugin.examples.oimo.helpers.Zest3DOimo;
 	import zest3d.applications.Zest3DApplication;
+	import zest3d.effects.PhongTexture2DEffect;
 	import zest3d.effects.SkyboxEffect;
 	import zest3d.effects.Texture2DEffect;
 	import zest3d.geometry.SkyboxGeometry;
@@ -21,6 +23,8 @@ package plugin.examples.oimo
 	import zest3d.resources.Texture2D;
 	import zest3d.resources.TextureCube;
 	import zest3d.scenegraph.enum.CullingType;
+	import zest3d.scenegraph.enum.LightType;
+	import zest3d.scenegraph.Light;
 	import zest3d.scenegraph.TriMesh;
 	
 	/**
@@ -33,8 +37,8 @@ package plugin.examples.oimo
 		[Embed(source = "../../../assets/atf/skybox.atf", mimeType = "application/octet-stream")]
 		private var SkyboxTexture:Class;
 		
-		[Embed(source="../../../assets/atf/space.atf", mimeType="application/octet-stream")]
-		private var SpaceTexture:Class;
+		[Embed(source="../../../../../../../DocumentsFlash Documents/Zest3D API/lib/space.atf", mimeType="application/octet-stream")]
+		private var GridTexture:Class;
 		
 		[Embed(source="../../../assets/atf/particle.atf", mimeType="application/octet-stream")]
 		private var ParticleTexture:Class;
@@ -46,7 +50,7 @@ package plugin.examples.oimo
 			clearColor = Color.fromHexRGB( 0xFFFFFF );
 			
 			// set the camera position
-			_camera.position = new APoint( 0, -10, -30 );
+			_camera.position = new APoint( 0, -6, -25 );
 			
 			// add stats
 			var stats:Stats = new Stats( );
@@ -56,8 +60,14 @@ package plugin.examples.oimo
 			clearColor = new Color( 0, 0, 0, 1 );
 			
 			// create texture and effect
-			var spaceTexture:Texture2D = Texture2D.fromByteArray( new SpaceTexture() );
-			var spaceEffect:Texture2DEffect = new Texture2DEffect( spaceTexture );
+			var gridTexture:Texture2D = Texture2D.fromByteArray( new GridTexture() );
+			
+			var light:Light = new Light( LightType.POINT );
+			light.position = new APoint( 0, -10, -80 );
+			light.ambient = new Color( 0.3, 0.3, 0.3 );
+			light.specular = new Color( 1, 1, 1, 6 );
+			
+			var gridEffect:PhongTexture2DEffect = new PhongTexture2DEffect( gridTexture, light );
 			
 			var skyboxTexture:TextureCube = TextureCube.fromByteArray( new SkyboxTexture() );
 			
@@ -66,7 +76,7 @@ package plugin.examples.oimo
 			_oimoWorld = new Zest3DOimo( 30 );
 			
 			// Add Ground
-			var plane:CubePrimitive = new CubePrimitive( spaceEffect, true, false, 10, 10, 10 );
+			var plane:CubePrimitive = new CubePrimitive( gridEffect, true, true, 10, 10, 10 );
 			plane.culling = CullingType.NEVER;
 			scene.addChild( plane );
 			
@@ -79,9 +89,10 @@ package plugin.examples.oimo
 			var i:int;
 			
 			// Add Boxes
-			for ( i = 0; i < 300; ++i )
+			/*
+			for ( i = 0; i < 100; ++i )
 			{
-				var cube:CubePrimitive = new CubePrimitive( spaceEffect, true, false, 1, 1, 1, false ); 
+				var cube:CubePrimitive = new CubePrimitive( gridEffect, true, true, 1, 1, 1, false ); 
 				scene.addChild( cube );
 				
 				var cubeConfig:ShapeConfig = new ShapeConfig();
@@ -92,11 +103,11 @@ package plugin.examples.oimo
 				boxMesh3D.restitution = 0.5;
 				_oimoWorld.addChild( boxMesh3D );
 			}
-			
+			*/
 			// Add Spheres
-			for ( i = 0; i < 300; ++i )
+			for ( i = 0; i < 100; ++i )
 			{
-				var sphere:SpherePrimitive = new SpherePrimitive( spaceEffect, true, false, 16, 16, 1, false, false );
+				var sphere:SpherePrimitive = new SpherePrimitive( gridEffect, true, true, 16, 16, 1, false, false );
 				scene.addChild( sphere );
 				
 				var sphereConfig:ShapeConfig = new ShapeConfig();
@@ -109,9 +120,9 @@ package plugin.examples.oimo
 			}
 			
 			// Add Cylinders
-			for ( i = 0; i < 300; ++i )
+			for ( i = 0; i < 100; ++i )
 			{
-				var cylinder:CylinderPrimitive = new CylinderPrimitive( spaceEffect, true, false, 4, 16, 1, 2, false, false, false );
+				var cylinder:CylinderPrimitive = new CylinderPrimitive( gridEffect, true, true, 4, 16, 1, 2, false, false, false );
 				scene.addChild( cylinder );
 				var cylinderConfig:ShapeConfig = new ShapeConfig();
 				cylinderConfig.position.init( (Math.random()*10)-5, ( -Math.random() * 1500)-5, (Math.random()*10)-5 );

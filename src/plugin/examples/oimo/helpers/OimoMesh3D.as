@@ -12,7 +12,7 @@ package plugin.examples.oimo.helpers
 		public var mesh:TriMesh;
 		public var shape:Shape;
 		
-		public function OimoMesh3D( shape:Shape, mesh:TriMesh, type:uint = RigidBody.BODY_DYNAMIC)
+		public function OimoMesh3D( shape:Shape, mesh:TriMesh, type:uint = 0x0 )
 		{
 			this.shape = shape;
 			this.mesh = mesh;

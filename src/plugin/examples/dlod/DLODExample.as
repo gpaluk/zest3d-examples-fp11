@@ -16,7 +16,7 @@ package plugin.examples.dlod
 	public class DLODExample extends Zest3DApplication 
 	{
 		
-		[Embed(source="../../../assets/atf/skybox.atf", mimeType="application/octet-stream")]
+		[Embed(source="../../../assets/atfcube/skybox.atf", mimeType="application/octet-stream")]
 		private var SkyboxATF:Class;
 		
 		override public function initialize():void 
