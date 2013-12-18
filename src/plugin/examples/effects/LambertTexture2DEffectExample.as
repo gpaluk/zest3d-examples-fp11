@@ -2,8 +2,9 @@ package plugin.examples.effects
 {
 	import io.plugin.core.graphics.Color;
 	import io.plugin.math.algebra.APoint;
+	import io.plugin.utils.Stats;
 	import zest3d.applications.Zest3DApplication;
-	import zest3d.effects.LambertTexture2DEffect;
+	import zest3d.effects.local.LambertTexture2DEffect;
 	import zest3d.primitives.TorusPrimitive;
 	import zest3d.resources.Texture2D;
 	import zest3d.scenegraph.enum.LightType;
@@ -15,13 +16,13 @@ package plugin.examples.effects
 	 */
 	public class LambertTexture2DEffectExample extends Zest3DApplication 
 	{
-		
-		[Embed(source = "../../../../../../../DocumentsFlash Documents/Zest3D API/lib/grid.atf", mimeType = "application/octet-stream")]
+		[Embed(source="../../../assets/atf/bw_checked.atf", mimeType="application/octet-stream")]
 		private var Tex2DATF:Class;
 		
 		private var _torus:TorusPrimitive;
 		override public function initialize():void 
 		{
+			addChild( new Stats() );
 			clearColor = new Color( .8, .2, .3 );
 			
 			var Tex2D:Texture2D = Texture2D.fromByteArray( new Tex2DATF() );

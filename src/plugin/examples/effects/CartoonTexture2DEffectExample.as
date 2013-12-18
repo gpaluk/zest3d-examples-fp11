@@ -2,10 +2,10 @@ package plugin.examples.effects
 {
 	import io.plugin.core.graphics.Color;
 	import io.plugin.math.algebra.APoint;
+	import io.plugin.utils.Stats;
 	import plugin.net.parsers.max3ds.Zest3DAdapter3DS;
 	import zest3d.applications.Zest3DApplication;
-	import zest3d.effects.CartoonTexture2DEffect;
-	import zest3d.primitives.CubePrimitive;
+	import zest3d.effects.local.CartoonTexture2DEffect;
 	import zest3d.resources.Texture2D;
 	import zest3d.scenegraph.enum.LightType;
 	import zest3d.scenegraph.enum.UpdateType;
@@ -28,11 +28,11 @@ package plugin.examples.effects
 		[Embed(source = "../../../assets/3ds/dancer.3ds", mimeType = "application/octet-stream")]
 		private var DANCER_3DS:Class;
 		
-		private var _cube:CubePrimitive;
 		private var _dancer:TriMesh;
 		
 		override public function initialize():void 
 		{
+			addChild( new Stats() );
 			
 			clearColor = new Color( 0, 0, 0 );
 			
@@ -43,7 +43,7 @@ package plugin.examples.effects
 			var gradientTexture: Texture2D = Texture2D.fromByteArray( new GRADIENT() );
 			
 			var light:Light = new Light( LightType.POINT );
-			light.position = new APoint( 1, -5, -2 );
+			light.position = new APoint( 1, -10, -5 );
 			light.ambient = new Color( 0.1, 0.1, 0.1 );
 			light.specular = new Color( 0.9, 0.9, 0.9, 50 );
 			
@@ -54,7 +54,6 @@ package plugin.examples.effects
 			_dancer.rotationX = 90 * (Math.PI / 180);
 			_dancer.scaleUniform = 8;
 			_dancer.y = 3;
-			
 			
 			scene.addChild( _dancer );
 		}

@@ -3,7 +3,7 @@ package plugin.examples.buffers.depth
 	import io.plugin.math.algebra.APoint;
 	import io.plugin.utils.Stats;
 	import zest3d.applications.Zest3DApplication;
-	import zest3d.effects.DepthEffect;
+	import zest3d.effects.local.DepthEffect;
 	import zest3d.primitives.CubePrimitive;
 	import zest3d.primitives.PlanePrimitive;
 	
@@ -20,7 +20,6 @@ package plugin.examples.buffers.depth
 			
 			_camera.position = new APoint( 0, 0, -10 );
 			var depthEffect:DepthEffect = new DepthEffect();
-			// depthEffect.effect.getVertexShader(0,0).numInputs
 			
 			var cube0:CubePrimitive = new CubePrimitive( depthEffect, false, false );
 			cube0.x = -3

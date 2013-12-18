@@ -1,10 +1,9 @@
 package plugin.examples.effects 
 {
+	import io.plugin.utils.Stats;
 	import zest3d.applications.Zest3DApplication;
-	import zest3d.effects.GlassEffect;
+	import zest3d.effects.local.GlassEffect;
 	import zest3d.geometry.SkyboxGeometry;
-	import zest3d.primitives.CubePrimitive;
-	import zest3d.primitives.PlanePrimitive;
 	import zest3d.primitives.TorusPrimitive;
 	import zest3d.resources.TextureCube;
 	
@@ -15,7 +14,7 @@ package plugin.examples.effects
 	public class GlassEffectExample extends Zest3DApplication 
 	{
 		
-		[Embed(source="../../../assets/atf/skybox.atf", mimeType="application/octet-stream")]
+		[Embed(source="../../../assets/atfcube/skybox.atf", mimeType="application/octet-stream")]
 		private var SkyboxATF:Class;
 		
 		private var _torus0:TorusPrimitive;
@@ -23,19 +22,21 @@ package plugin.examples.effects
 		private var _torus2:TorusPrimitive;
 		
 		override public function initialize():void 
-		{			
+		{
+			addChild( new Stats() );
+			
 			var skyTexture:TextureCube = TextureCube.fromByteArray( new SkyboxATF() );
 			var glassEffect:GlassEffect = new GlassEffect( skyTexture );
 			
-			_torus0 = new TorusPrimitive( glassEffect, false, true );
+			_torus0 = new TorusPrimitive( glassEffect, false, true, 64, 32 );
 			_torus0.x = -3.5;
 			scene.addChild( _torus0 );
 			
-			_torus1 = new TorusPrimitive( glassEffect, false, true );
+			_torus1 = new TorusPrimitive( glassEffect, false, true, 64, 32 );
 			_torus1.x = 3.5;
 			scene.addChild( _torus1 );
 			
-			_torus2 = new TorusPrimitive( glassEffect, false, true );
+			_torus2 = new TorusPrimitive( glassEffect, false, true, 64, 32 );
 			scene.addChild( _torus2 );
 			
 			skybox = new SkyboxGeometry( skyTexture );

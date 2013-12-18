@@ -4,8 +4,7 @@ package plugin.examples.scene
 	import io.plugin.core.graphics.Color;
 	import io.plugin.utils.Stats;
 	import zest3d.applications.Zest3DApplication;
-	import zest3d.effects.PhongTexture2DEffect;
-	import zest3d.effects.Texture2DEffect;
+	import zest3d.effects.local.PhongTexture2DEffect;
 	import zest3d.primitives.CubePrimitive;
 	import zest3d.primitives.PlanePrimitive;
 	import zest3d.resources.Texture2D;
@@ -20,7 +19,7 @@ package plugin.examples.scene
 	public class RandomBoxScene extends Zest3DApplication 
 	{
 		
-		[Embed(source = "../../../assets/atf/space.atf", mimeType = "application/octet-stream")]
+		[Embed(source="../../../assets/atf/white_gloss.atf", mimeType="application/octet-stream")]
 		private var SPACE_ATF:Class;
 		
 		private var _textfield:TextField;
@@ -34,8 +33,8 @@ package plugin.examples.scene
 			
 			
 			var light:Light = new Light( LightType.POINT );
-			light.ambient = new Color( 0.2, 0.2, 0.2 );
-			light.specular = new Color( 1, 1, 1, 60 );
+			light.ambient = new Color( 0, 0, 0 );
+			light.specular = new Color( 1, 1, 1, 40 );
 			_lightNode = new LightNode( light );
 			
 			scene.addChild( _lightNode );
@@ -45,7 +44,7 @@ package plugin.examples.scene
 			var cube:CubePrimitive;
 			var plane:PlanePrimitive;
 			var i:int;
-			for ( i = 0; i < 300; ++i )
+			for ( i = 0; i < 400; ++i )
 			{
 				plane = new PlanePrimitive( effect, true, true, 2, 2, 6, 1 );
 				plane.rotationY = 90 * (Math.PI / 180 );
@@ -84,9 +83,7 @@ package plugin.examples.scene
 			moveForward();
 			moveForward();
 			moveForward();
-			moveForward();
-			moveForward();
-			_lightNode.z = _camera.position.z + 50
+			_lightNode.z = _camera.position.z + (Math.sin( appTime * 0.002 ) * 50) + 20;
 		}
 	}
 }

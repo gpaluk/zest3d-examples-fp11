@@ -1,8 +1,9 @@
 package plugin.examples.dlod 
 {
+	import io.plugin.utils.Stats;
 	import zest3d.applications.Zest3DApplication;
 	import zest3d.detail.DlodNode;
-	import zest3d.effects.ReflectionEffect;
+	import zest3d.effects.local.ReflectionEffect;
 	import zest3d.geometry.SkyboxGeometry;
 	import zest3d.primitives.TorusPrimitive;
 	import zest3d.resources.TextureCube;
@@ -21,6 +22,8 @@ package plugin.examples.dlod
 		
 		override public function initialize():void 
 		{
+			addChild( new Stats() );
+			
 			var skyTexture:TextureCube = TextureCube.fromByteArray( new SkyboxATF() );
 			var reflectionEffect:ReflectionEffect = new ReflectionEffect( skyTexture );
 			

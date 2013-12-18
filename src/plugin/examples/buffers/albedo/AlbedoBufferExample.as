@@ -4,7 +4,7 @@ package plugin.examples.buffers.albedo
 	import io.plugin.math.algebra.APoint;
 	import io.plugin.utils.Stats;
 	import zest3d.applications.Zest3DApplication;
-	import zest3d.effects.Texture2DEffect;
+	import zest3d.effects.local.Texture2DEffect;
 	import zest3d.primitives.PlanePrimitive;
 	import zest3d.primitives.TorusPrimitive;
 	import zest3d.resources.Texture2D;
@@ -25,9 +25,10 @@ package plugin.examples.buffers.albedo
 		
 		override public function initialize():void 
 		{
+			addChild( new Stats() );
+			
 			clearColor = Color.fromHexRGB( 0x111111 );
 			
-			addChild( new Stats() );
 			_camera.position = new APoint( 0, 0, -10 );
 			
 			var texture2D:Texture2D = Texture2D.fromByteArray( new SpaceATF() );

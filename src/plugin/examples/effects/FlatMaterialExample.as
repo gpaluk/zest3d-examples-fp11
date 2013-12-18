@@ -1,8 +1,9 @@
 package plugin.examples.effects 
 {
 	import io.plugin.core.graphics.Color;
+	import io.plugin.utils.Stats;
 	import zest3d.applications.Zest3DApplication;
-	import zest3d.effects.FlatMaterialEffect;
+	import zest3d.effects.local.FlatMaterialEffect;
 	import zest3d.primitives.TorusPrimitive;
 	import zest3d.scenegraph.Material;
 	
@@ -14,11 +15,10 @@ package plugin.examples.effects
 	{
 		
 		private var _torus0:TorusPrimitive;
-		private var _torus1:TorusPrimitive;
-		private var _torus2:TorusPrimitive;
 		
 		override public function initialize():void 
 		{
+			addChild( new Stats() );
 			clearColor = Color.fromHexRGB( 0x000000 );
 			
 			var material:Material = new Material();

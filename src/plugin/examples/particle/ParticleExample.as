@@ -2,6 +2,7 @@ package plugin.examples.particle
 {
 	import flash.utils.ByteArray;
 	import io.plugin.math.algebra.APoint;
+	import io.plugin.utils.Stats;
 	import zest3d.applications.Zest3DApplication;
 	import zest3d.effects.Texture2DEffect;
 	import zest3d.geometry.ParticleGeometry;
@@ -21,6 +22,7 @@ package plugin.examples.particle
 		private var _particles:ParticleGeometry;
 		override public function initialize():void 
 		{
+			addChild( new Stats() );
 			_camera.position = new APoint( 0, 0, -8 );
 			
 			var particleTexture:Texture2D = Texture2D.fromByteArray( new ParticleATF() );

@@ -3,9 +3,11 @@ package plugin.examples.billboard
 	import flash.events.MouseEvent;
 	import zest3d.applications.Zest3DApplication;
 	import zest3d.detail.BillboardNode;
-	import zest3d.effects.ReflectionEffect;
+	import zest3d.effects.local.ReflectionEffect;
+	import zest3d.effects.local.Texture2DEffect;
 	import zest3d.geometry.SkyboxGeometry;
 	import zest3d.primitives.PlanePrimitive;
+	import zest3d.resources.Texture2D;
 	import zest3d.resources.TextureCube;
 	
 	/**
@@ -17,17 +19,23 @@ package plugin.examples.billboard
 	public class BillboardExample extends Zest3DApplication 
 	{
 		
-		[Embed(source="../../../assets/atf/skybox.atf", mimeType="application/octet-stream")]
+		[Embed(source="../../../assets/atfcube/skybox.atf", mimeType="application/octet-stream")]
 		private var SkyboxATF:Class;
+		
+		[Embed(source = "../../../assets/atf/bw_checked.atf", mimeType = "application/octet-stream")]
+		private var CheckedATF:Class;
 		
 		override public function initialize():void
 		{
+			addChild( new Stats() );
+			
 			var skyTexture:TextureCube = TextureCube.fromByteArray( new SkyboxATF() );
 			var reflectionEffect:ReflectionEffect = new ReflectionEffect( skyTexture );
-			
 			skybox = new SkyboxGeometry( skyTexture );
 			
-			var plane:PlanePrimitive = new PlanePrimitive( reflectionEffect, false, true );
+			var checkedTexture:Texture2D = Texture2D.fromByteArray( new CheckedATF() );
+			var texture2DEffect:Texture2DEffect = new Texture2DEffect( checkedTexture );
+			var plane:PlanePrimitive = new PlanePrimitive( texture2DEffect, true, false );
 			
 			var billboard:BillboardNode = new BillboardNode( _camera );
 			billboard.addChild( plane );

@@ -2,8 +2,9 @@ package plugin.examples.effects
 {
 	import io.plugin.core.graphics.Color;
 	import io.plugin.math.algebra.APoint;
+	import io.plugin.utils.Stats;
 	import zest3d.applications.Zest3DApplication;
-	import zest3d.effects.NormalMapTexture2DEffect;
+	import zest3d.effects.local.NormalMapTexture2DEffect;
 	import zest3d.primitives.TorusPrimitive;
 	import zest3d.resources.Texture2D;
 	import zest3d.scenegraph.enum.LightType;
@@ -26,21 +27,22 @@ package plugin.examples.effects
 		
 		override public function initialize():void 
 		{
+			addChild( new Stats() );
 			_camera.position = new APoint( 0, 0, -3 );
 			clearColor = Color.fromHexRGB( 0x000000 );
 			
-			var Tex2D:Texture2D = Texture2D.fromByteArray( new Tex2DATF() );
-			var Normals:Texture2D = Texture2D.fromByteArray( new NormalsATF() );
+			var tex2D:Texture2D = Texture2D.fromByteArray( new Tex2DATF() );
+			var normals:Texture2D = Texture2D.fromByteArray( new NormalsATF() );
 			
 			var light:Light = new Light( LightType.POINT );
 			light.position = new APoint( 0, -8, -20 );
 			light.ambient = new Color( 0.1, 0.1, 0.1 );
 			light.specular = new Color( 0.9, 0.9, 0.9, 10 );
 			
-			var effect:NormalMapTexture2DEffect = new NormalMapTexture2DEffect( Tex2D, Normals, light );
+			var effect:NormalMapTexture2DEffect = new NormalMapTexture2DEffect( tex2D, normals, light );
 			
 			_torus = new TorusPrimitive( effect, true, true, 128, 64 );
-			//_torus.updateModelSpace( new UpdateType.USE_GEOMETRY
+			_torus.updateModelSpace( UpdateType.USE_GEOMETRY );
 			scene.addChild( _torus );
 		}
 		

@@ -5,14 +5,13 @@ package plugin.examples.parsers
 	import io.plugin.utils.Stats;
 	import plugin.net.parsers.max3ds.Zest3DAdapter3DS;
 	import zest3d.applications.Zest3DApplication;
-	import zest3d.effects.PhongTexture2DEffect;
+	import zest3d.effects.local.PhongTexture2DEffect;
 	import zest3d.geometry.SkyboxGeometry;
 	import zest3d.resources.Texture2D;
 	import zest3d.resources.TextureCube;
 	import zest3d.scenegraph.enum.LightType;
 	import zest3d.scenegraph.enum.UpdateType;
 	import zest3d.scenegraph.Light;
-	import zest3d.scenegraph.Node;
 	import zest3d.scenegraph.TriMesh;
 	
 	/**

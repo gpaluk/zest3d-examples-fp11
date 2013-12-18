@@ -5,17 +5,13 @@ package plugin.examples.oimo
 	import com.element.oimo.physics.collision.shape.ShapeConfig;
 	import com.element.oimo.physics.collision.shape.SphereShape;
 	import com.element.oimo.physics.dynamics.RigidBody;
-	import flash.text.TextField;
 	import io.plugin.core.graphics.Color;
 	import io.plugin.math.algebra.APoint;
 	import io.plugin.utils.Stats;
-	import plugin.examples.effects.PhongTexture2DEffectExample;
 	import plugin.examples.oimo.helpers.OimoMesh3D;
 	import plugin.examples.oimo.helpers.Zest3DOimo;
 	import zest3d.applications.Zest3DApplication;
-	import zest3d.effects.PhongTexture2DEffect;
-	import zest3d.effects.SkyboxEffect;
-	import zest3d.effects.Texture2DEffect;
+	import zest3d.effects.local.PhongTexture2DEffect;
 	import zest3d.geometry.SkyboxGeometry;
 	import zest3d.primitives.CubePrimitive;
 	import zest3d.primitives.CylinderPrimitive;
@@ -34,14 +30,11 @@ package plugin.examples.oimo
 	public class OimoExample extends Zest3DApplication 
 	{
 		
-		[Embed(source = "../../../assets/atf/skybox.atf", mimeType = "application/octet-stream")]
+		[Embed(source="../../../assets/atfcube/skybox.atf", mimeType="application/octet-stream")]
 		private var SkyboxTexture:Class;
 		
-		[Embed(source="../../../../../../../DocumentsFlash Documents/Zest3D API/lib/space.atf", mimeType="application/octet-stream")]
+		[Embed(source="../../../assets/atf/space.atf", mimeType="application/octet-stream")]
 		private var GridTexture:Class;
-		
-		[Embed(source="../../../assets/atf/particle.atf", mimeType="application/octet-stream")]
-		private var ParticleTexture:Class;
 		
 		private var _oimoWorld:Zest3DOimo;
 		
@@ -53,8 +46,7 @@ package plugin.examples.oimo
 			_camera.position = new APoint( 0, -6, -25 );
 			
 			// add stats
-			var stats:Stats = new Stats( );
-			addChild( stats );
+			addChild( new Stats() );
 			
 			// set the clear color
 			clearColor = new Color( 0, 0, 0, 1 );
@@ -70,7 +62,6 @@ package plugin.examples.oimo
 			var gridEffect:PhongTexture2DEffect = new PhongTexture2DEffect( gridTexture, light );
 			
 			var skyboxTexture:TextureCube = TextureCube.fromByteArray( new SkyboxTexture() );
-			
 			
 			// Oimo
 			_oimoWorld = new Zest3DOimo( 30 );
@@ -89,7 +80,6 @@ package plugin.examples.oimo
 			var i:int;
 			
 			// Add Boxes
-			/*
 			for ( i = 0; i < 100; ++i )
 			{
 				var cube:CubePrimitive = new CubePrimitive( gridEffect, true, true, 1, 1, 1, false ); 
@@ -103,7 +93,7 @@ package plugin.examples.oimo
 				boxMesh3D.restitution = 0.5;
 				_oimoWorld.addChild( boxMesh3D );
 			}
-			*/
+			
 			// Add Spheres
 			for ( i = 0; i < 100; ++i )
 			{
