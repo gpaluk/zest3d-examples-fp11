@@ -20,7 +20,7 @@ package plugin.examples.dlod
 		[Embed(source="../../../assets/atfcube/skybox.atf", mimeType="application/octet-stream")]
 		private var SkyboxATF:Class;
 		
-		override public function initialize():void 
+		override protected function initialize():void 
 		{
 			addChild( new Stats() );
 			

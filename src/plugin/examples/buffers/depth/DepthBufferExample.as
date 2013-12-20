@@ -14,11 +14,11 @@ package plugin.examples.buffers.depth
 	public class DepthBufferExample extends Zest3DApplication 
 	{
 		
-		override public function initialize():void 
+		override protected function initialize():void 
 		{
 			addChild( new Stats() );
 			
-			_camera.position = new APoint( 0, 0, -10 );
+			camera.position = new APoint( 0, 0, -10 );
 			var depthEffect:DepthEffect = new DepthEffect();
 			
 			var cube0:CubePrimitive = new CubePrimitive( depthEffect, false, false );

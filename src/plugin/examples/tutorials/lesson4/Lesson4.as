@@ -1,7 +1,6 @@
-package plugin.examples.billboard 
+package plugin.examples.tutorials.lesson4 
 {
 	import flash.events.MouseEvent;
-	import io.plugin.utils.Stats;
 	import zest3d.applications.Zest3DApplication;
 	import zest3d.detail.BillboardNode;
 	import zest3d.effects.local.ReflectionEffect;
@@ -12,29 +11,24 @@ package plugin.examples.billboard
 	import zest3d.resources.TextureCube;
 	
 	/**
-	 * This BillboardNode example causes the torus mesh to orient to the camera. BillboardNodes preserve
-	 * the world orientation UNIT_Y axis. Use WASD controls to move the camera.
-	 * 
-	 * @author Gary Paluk
+	 * ...
+	 * @author Gary Paluk - http://www.plugin.io
 	 */
-	public class BillboardExample extends Zest3DApplication 
+	public class Lesson4 extends Zest3DApplication 
 	{
+		[Embed(source="../../../../assets/atfcube/skybox.atf", mimeType="application/octet-stream")]
+		private var SKYBOX_ATF:Class;
 		
-		[Embed(source="../../../assets/atfcube/skybox.atf", mimeType="application/octet-stream")]
-		private var SkyboxATF:Class;
+		[Embed(source = "../../../../assets/atf/bw_checked.atf", mimeType = "application/octet-stream")]
+		private var CHECKED_ATF:Class;
 		
-		[Embed(source = "../../../assets/atf/bw_checked.atf", mimeType = "application/octet-stream")]
-		private var CheckedATF:Class;
-		
-		override protected function initialize():void
+		override protected function initialize():void 
 		{
-			addChild( new Stats() );
-			
-			var skyTexture:TextureCube = TextureCube.fromByteArray( new SkyboxATF() );
+			var skyTexture:TextureCube = TextureCube.fromByteArray( new SKYBOX_ATF() );
 			var reflectionEffect:ReflectionEffect = new ReflectionEffect( skyTexture );
 			skybox = new SkyboxGeometry( skyTexture );
 			
-			var checkedTexture:Texture2D = Texture2D.fromByteArray( new CheckedATF() );
+			var checkedTexture:Texture2D = Texture2D.fromByteArray( new CHECKED_ATF() );
 			var texture2DEffect:TextureEffect = new TextureEffect( checkedTexture );
 			var plane:PlanePrimitive = new PlanePrimitive( texture2DEffect, true, false );
 			
@@ -47,5 +41,7 @@ package plugin.examples.billboard
 		{
 			return false;
 		}
+		
 	}
+
 }

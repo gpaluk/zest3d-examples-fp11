@@ -21,7 +21,7 @@ package plugin.examples.effects
 		private var _torus1:TorusPrimitive;
 		private var _torus2:TorusPrimitive;
 		
-		override public function initialize():void 
+		override protected function initialize():void 
 		{
 			addChild( new Stats() );
 			

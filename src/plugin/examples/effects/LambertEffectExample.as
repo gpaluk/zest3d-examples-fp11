@@ -4,7 +4,7 @@ package plugin.examples.effects
 	import io.plugin.math.algebra.APoint;
 	import io.plugin.utils.Stats;
 	import zest3d.applications.Zest3DApplication;
-	import zest3d.effects.local.LambertTexture2DEffect;
+	import zest3d.effects.local.LambertEffect;
 	import zest3d.primitives.TorusPrimitive;
 	import zest3d.resources.Texture2D;
 	import zest3d.scenegraph.enum.LightType;
@@ -14,24 +14,24 @@ package plugin.examples.effects
 	 * ...
 	 * @author Gary Paluk - http://www.plugin.io
 	 */
-	public class LambertTexture2DEffectExample extends Zest3DApplication 
+	public class LambertEffectExample extends Zest3DApplication 
 	{
 		[Embed(source="../../../assets/atf/bw_checked.atf", mimeType="application/octet-stream")]
-		private var Tex2DATF:Class;
+		private const CHECKED_ATD:Class;
 		
 		private var _torus:TorusPrimitive;
-		override public function initialize():void 
+		override protected function initialize():void 
 		{
 			addChild( new Stats() );
 			clearColor = new Color( .8, .2, .3 );
 			
-			var Tex2D:Texture2D = Texture2D.fromByteArray( new Tex2DATF() );
+			var checkedTexture:Texture2D = Texture2D.fromByteArray( new CHECKED_ATD() );
 			
-			var light:Light = new Light( LightType.AMBIENT );
+			var light:Light = new Light();
 			light.position = new APoint( 10, 0, -10 );
 			light.ambient = new Color( 0.1, 0.2, 0.3 );
 			
-			var effect:LambertTexture2DEffect = new LambertTexture2DEffect( Tex2D, light );
+			var effect:LambertEffect = new LambertEffect( checkedTexture, light );
 			
 			_torus = new TorusPrimitive( effect, true, true );
 			

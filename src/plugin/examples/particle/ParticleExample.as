@@ -3,8 +3,9 @@ package plugin.examples.particle
 	import flash.utils.ByteArray;
 	import io.plugin.math.algebra.APoint;
 	import io.plugin.utils.Stats;
+	import plugin.RandomParticleController;
 	import zest3d.applications.Zest3DApplication;
-	import zest3d.effects.Texture2DEffect;
+	import zest3d.effects.local.TextureEffect;
 	import zest3d.geometry.ParticleGeometry;
 	//import zest3d.RandomParticleController;
 	import zest3d.resources.Texture2D;
@@ -20,13 +21,13 @@ package plugin.examples.particle
 		private var ParticleATF:Class;
 		
 		private var _particles:ParticleGeometry;
-		override public function initialize():void 
+		override protected function initialize():void 
 		{
 			addChild( new Stats() );
-			_camera.position = new APoint( 0, 0, -8 );
+			camera.position = new APoint( 0, 0, -8 );
 			
 			var particleTexture:Texture2D = Texture2D.fromByteArray( new ParticleATF() );
-			var particleEffect:Texture2DEffect = new Texture2DEffect( particleTexture );
+			var particleEffect:TextureEffect = new TextureEffect( particleTexture );
 			
 			var numParticles:int = 500;
 			var positionSizes:ByteArray = new ByteArray();
@@ -40,7 +41,6 @@ package plugin.examples.particle
 			
 			_particles = new ParticleGeometry( particleEffect, numParticles, positionSizes );
 			_particles.scaleUniform = 10;
-			
 			// _particles.addController( new RandomParticleController() ); 
 			
 			scene.addChild( _particles );

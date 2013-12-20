@@ -3,9 +3,9 @@ package plugin.examples.parsers
 	import io.plugin.core.graphics.Color;
 	import io.plugin.math.algebra.APoint;
 	import io.plugin.utils.Stats;
-	import plugin.net.parsers.max3ds.Zest3DAdapter3DS;
+	import plugin.net.parsers.max3ds.ParserAdapter3DS;
 	import zest3d.applications.Zest3DApplication;
-	import zest3d.effects.local.PhongTexture2DEffect;
+	import zest3d.effects.local.PhongEffect;
 	import zest3d.geometry.SkyboxGeometry;
 	import zest3d.resources.Texture2D;
 	import zest3d.resources.TextureCube;
@@ -30,7 +30,7 @@ package plugin.examples.parsers
 		private var SKYBOX_ATF:Class;
 		
 		private var _dancer:TriMesh;
-		override public function initialize():void 
+		override protected function initialize():void 
 		{
 			addChild( new Stats() );
 			
@@ -39,15 +39,15 @@ package plugin.examples.parsers
 			
 			var light:Light = new Light( LightType.AMBIENT );
 			light.position = new APoint( 5, -10, -20 );
-			light.specular = new Color( 0.8, 0.8, 0.8, 30 );
+			light.specular = new Color( 0.8, 0.8, 0.8 );
+			light.exponent = 20;
 			light.ambient = Color.fromHexRGB( 0x785946 )
 			
 			var spaceTexture:Texture2D = Texture2D.fromByteArray( new SPACE_ATF() );
-			var phongEffect: PhongTexture2DEffect = new PhongTexture2DEffect( spaceTexture, light );
+			var phongEffect: PhongEffect = new PhongEffect( spaceTexture, light );
 			
-			var parser:Zest3DAdapter3DS = new Zest3DAdapter3DS( new DANCER_3DS() );
+			var parser:ParserAdapter3DS = new ParserAdapter3DS( new DANCER_3DS(), true, true );
 			parser.parse();
-			
 			
 			_dancer = parser.getMeshAt( 0 );
 			_dancer.effect = phongEffect;

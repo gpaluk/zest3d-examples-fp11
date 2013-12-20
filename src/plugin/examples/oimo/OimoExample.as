@@ -11,7 +11,7 @@ package plugin.examples.oimo
 	import plugin.examples.oimo.helpers.OimoMesh3D;
 	import plugin.examples.oimo.helpers.Zest3DOimo;
 	import zest3d.applications.Zest3DApplication;
-	import zest3d.effects.local.PhongTexture2DEffect;
+	import zest3d.effects.local.PhongEffect;
 	import zest3d.geometry.SkyboxGeometry;
 	import zest3d.primitives.CubePrimitive;
 	import zest3d.primitives.CylinderPrimitive;
@@ -38,12 +38,12 @@ package plugin.examples.oimo
 		
 		private var _oimoWorld:Zest3DOimo;
 		
-		override public function initialize():void 
+		override protected function initialize():void 
 		{
 			clearColor = Color.fromHexRGB( 0xFFFFFF );
 			
 			// set the camera position
-			_camera.position = new APoint( 0, -6, -25 );
+			camera.position = new APoint( 0, -6, -25 );
 			
 			// add stats
 			addChild( new Stats() );
@@ -54,12 +54,13 @@ package plugin.examples.oimo
 			// create texture and effect
 			var gridTexture:Texture2D = Texture2D.fromByteArray( new GridTexture() );
 			
-			var light:Light = new Light( LightType.POINT );
+			var light:Light = new Light();
 			light.position = new APoint( 0, -10, -80 );
 			light.ambient = new Color( 0.3, 0.3, 0.3 );
-			light.specular = new Color( 1, 1, 1, 6 );
+			light.specular = new Color( 1, 1, 1 );
+			light.exponent = 6;
 			
-			var gridEffect:PhongTexture2DEffect = new PhongTexture2DEffect( gridTexture, light );
+			var gridEffect:PhongEffect = new PhongEffect( gridTexture, light );
 			
 			var skyboxTexture:TextureCube = TextureCube.fromByteArray( new SkyboxTexture() );
 			

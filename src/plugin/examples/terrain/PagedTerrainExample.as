@@ -6,7 +6,7 @@ package plugin.examples.terrain
 	import io.plugin.math.algebra.APoint;
 	import io.plugin.utils.Stats;
 	import zest3d.applications.Zest3DApplication;
-	import zest3d.effects.local.PhongTexture2DEffect;
+	import zest3d.effects.local.PhongEffect;
 	import zest3d.geometry.SkyboxGeometry;
 	import zest3d.resources.enum.AttributeType;
 	import zest3d.resources.enum.AttributeUsageType;
@@ -34,10 +34,10 @@ package plugin.examples.terrain
 		
 		private var _terrain:Terrain;
 		private var _textfield:TextField;
-		override public function initialize():void 
+		override protected function initialize():void 
 		{
 			addChild( new Stats() );
-			_camera.position = new APoint( 0, -4, 0 );
+			camera.position = new APoint( 0, -4, 0 );
 			
 			var vFormat:VertexFormat = new VertexFormat( 3 );
 			vFormat.setAttribute( 0, 0, 0, AttributeUsageType.POSITION, AttributeType.FLOAT3, 0 );
@@ -48,14 +48,15 @@ package plugin.examples.terrain
 			_terrain = new Terrain( "terrain", vFormat, _camera );
 			_terrain.rotationX = 90 * (Math.PI / 180 );
 			
-			var light:Light = new Light( LightType.POINT );
+			var light:Light = new Light();
 			light.position = new APoint( -100, -100, -100 );
 			light.ambient = new Color( 0, 0, 0 );
-			light.specular = new Color( 0.46, 0.21, 0.21, 1 );
+			light.specular = new Color( 0.46, 0.21, 0.21 );
+			light.exponent = 1;
 			
 			var texture:Texture2D = Texture2D.fromByteArray( new SPACE_ATF() );
 			
-			var effect:PhongTexture2DEffect = new PhongTexture2DEffect( texture, light );
+			var effect:PhongEffect = new PhongEffect( texture, light );
 			
 			for ( var i:int = 0; i < _terrain.rowQuantity; ++i )
 			{

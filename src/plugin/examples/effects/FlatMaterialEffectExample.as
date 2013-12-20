@@ -11,12 +11,12 @@ package plugin.examples.effects
 	 * ...
 	 * @author Gary Paluk
 	 */
-	public class FlatMaterialExample extends Zest3DApplication 
+	public class FlatMaterialEffectExample extends Zest3DApplication 
 	{
 		
 		private var _torus0:TorusPrimitive;
 		
-		override public function initialize():void 
+		override protected function initialize():void 
 		{
 			addChild( new Stats() );
 			clearColor = Color.fromHexRGB( 0x000000 );

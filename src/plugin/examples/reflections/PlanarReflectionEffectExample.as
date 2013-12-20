@@ -8,8 +8,8 @@ package plugin.examples.reflections
 	import zest3d.applications.Zest3DApplication;
 	import zest3d.effects.global.PlanarReflectionEffect;
 	import zest3d.effects.local.FlatMaterialEffect;
-	import zest3d.effects.local.PhongTexture2DEffect;
-	import zest3d.effects.local.Texture2DEffect;
+	import zest3d.effects.local.PhongEffect;
+	import zest3d.effects.local.TextureEffect;
 	import zest3d.geometry.ParticleGeometry;
 	import zest3d.geometry.SkyboxGeometry;
 	import zest3d.primitives.CubePrimitive;
@@ -56,26 +56,27 @@ package plugin.examples.reflections
 		private var _lightNode:LightNode;
 		private var _particles:ParticleGeometry;
 		
-		override public function initialize():void 
+		override protected function initialize():void 
 		{
 			addChild( new Stats() );
-			_camera.position = new APoint( 0, -2, -7 );
+			camera.position = new APoint( 0, -2, -7 );
 			clearColor = new Color( 0, 0, 0, 0 );
 			
 			var bwCheckedTexture:Texture2D = Texture2D.fromByteArray( new BW_CHECKED_ATF() );
 			var spaceTexture:Texture2D = Texture2D.fromByteArray( new SPACE_ATF() );
 			var bwStripedTexture:TextureCube = TextureCube.fromByteArray( new BW_STRIPES_ATF() );
 			
-			var light:Light = new Light( LightType.DIRECTIONAL );
+			var light:Light = new Light();
 			light.ambient = new Color( 0.2, 0.2, 0.2 );
-			light.specular = new Color( 1, 1, 1, 5 );
+			light.specular = new Color( 1, 1, 1 );
+			light.exponent = 5;
 			
 			_lightNode = new LightNode( light );
 			_lightNode.position = new APoint( 0, -2, 0 );
 			
-			var phongSpaceEffect:PhongTexture2DEffect = new PhongTexture2DEffect( spaceTexture, light );
-			var phongCheckEffect:PhongTexture2DEffect = new PhongTexture2DEffect( bwCheckedTexture, light );
-			var bwChecked2DEffect:Texture2DEffect = new Texture2DEffect( bwCheckedTexture );
+			var phongSpaceEffect:PhongEffect = new PhongEffect( spaceTexture, light );
+			var phongCheckEffect:PhongEffect = new PhongEffect( bwCheckedTexture, light );
+			var bwChecked2DEffect:TextureEffect = new TextureEffect( bwCheckedTexture );
 			
 			_sceneCuller = new Culler( _camera );
 			_meshCuller = new Culler( _camera );
@@ -116,7 +117,7 @@ package plugin.examples.reflections
 			_lightNode.addChild( lightSphere );
 			
 			var particleTexture:Texture2D = Texture2D.fromByteArray( new PARTICLE_ATF() );
-			var particleEffect:Texture2DEffect = new Texture2DEffect( particleTexture );
+			var particleEffect:TextureEffect = new TextureEffect( particleTexture );
 			
 			var numParticles:int = 500;
 			var positionSizes:ByteArray = new ByteArray();

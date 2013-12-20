@@ -23,13 +23,13 @@ package plugin.examples.buffers.albedo
 		private var _torus1:TorusPrimitive;
 		private var _torus2:TorusPrimitive;
 		
-		override public function initialize():void 
+		override protected function initialize():void 
 		{
 			addChild( new Stats() );
 			
 			clearColor = Color.fromHexRGB( 0x111111 );
 			
-			_camera.position = new APoint( 0, 0, -10 );
+			camera.position = new APoint( 0, 0, -10 );
 			
 			var texture2D:Texture2D = Texture2D.fromByteArray( new SpaceATF() );
 			var texture2DEffect:Texture2DEffect = new Texture2DEffect( texture2D );
