@@ -1,4 +1,4 @@
-package plugin.examples.tutorials.lesson1 
+package plugin.examples.tutorials.lesson01 
 {
 	import io.plugin.core.interfaces.IDisposable;
 	import zest3d.applications.Zest3DApplication;
@@ -6,7 +6,7 @@ package plugin.examples.tutorials.lesson1
 	import zest3d.primitives.TorusPrimitive;
 	import zest3d.resources.Texture2D;
 	
-	public class Lesson1 extends Zest3DApplication implements IDisposable 
+	public class Lesson01 extends Zest3DApplication implements IDisposable 
 	{
 		
 		[Embed(source = "../../../../assets/atf/bw_checked.atf", mimeType = "application/octet-stream")]

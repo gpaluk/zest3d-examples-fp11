@@ -1,4 +1,4 @@
-package plugin.examples.tutorials.lesson5 
+package plugin.examples.tutorials.lesson05 
 {
 	import zest3d.applications.Zest3DApplication;
 	import zest3d.detail.DlodNode;
@@ -11,7 +11,7 @@ package plugin.examples.tutorials.lesson5
 	 * ...
 	 * @author Gary Paluk - http://www.plugin.io
 	 */
-	public class Lesson5 extends Zest3DApplication 
+	public class Lesson05 extends Zest3DApplication 
 	{
 		[Embed(source="../../../../assets/atfcube/skybox.atf", mimeType="application/octet-stream")]
 		private var SKYBOX_ATF:Class;

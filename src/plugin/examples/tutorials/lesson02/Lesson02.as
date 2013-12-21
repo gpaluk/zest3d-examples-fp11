@@ -1,4 +1,4 @@
-package plugin.examples.tutorials.lesson2 
+package plugin.examples.tutorials.lesson02 
 {
 	import zest3d.applications.Zest3DApplication;
 	import zest3d.geometry.SkyboxGeometry;

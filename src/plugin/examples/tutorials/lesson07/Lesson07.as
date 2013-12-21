@@ -1,4 +1,4 @@
-package plugin.examples.tutorials.lesson7 
+package plugin.examples.tutorials.lesson07 
 {
 	import flash.display3D.textures.Texture;
 	import io.plugin.math.algebra.APoint;
@@ -17,7 +17,7 @@ package plugin.examples.tutorials.lesson7
 	 * ...
 	 * @author Gary Paluk - http://www.plugin.io
 	 */
-	public class Lesson7 extends Zest3DApplication 
+	public class Lesson07 extends Zest3DApplication 
 	{
 		[Embed(source = "../../../../assets/3ds/dancer.3ds", mimeType = "application/octet-stream")]
 		private var DANCER_3DS:Class;

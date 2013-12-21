@@ -1,4 +1,4 @@
-package plugin.examples.tutorials.lesson4 
+package plugin.examples.tutorials.lesson04 
 {
 	import flash.events.MouseEvent;
 	import zest3d.applications.Zest3DApplication;
@@ -14,7 +14,7 @@ package plugin.examples.tutorials.lesson4
 	 * ...
 	 * @author Gary Paluk - http://www.plugin.io
 	 */
-	public class Lesson4 extends Zest3DApplication 
+	public class Lesson04 extends Zest3DApplication 
 	{
 		[Embed(source="../../../../assets/atfcube/skybox.atf", mimeType="application/octet-stream")]
 		private var SKYBOX_ATF:Class;

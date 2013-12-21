@@ -1,4 +1,4 @@
-package plugin.examples.tutorials.lesson6 
+package plugin.examples.tutorials.lesson06 
 {
 	import io.plugin.core.graphics.Color;
 	import zest3d.applications.Zest3DApplication;
@@ -14,7 +14,7 @@ package plugin.examples.tutorials.lesson6
 	 * ...
 	 * @author Gary Paluk - http://www.plugin.io
 	 */
-	public class Lesson6 extends Zest3DApplication 
+	public class Lesson06 extends Zest3DApplication 
 	{
 		[Embed(source="../../../../assets/atfcube/skybox.atf", mimeType="application/octet-stream")]
 		private var SKYBOX_ATF:Class;

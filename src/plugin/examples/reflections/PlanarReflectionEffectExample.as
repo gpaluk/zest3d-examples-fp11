@@ -58,7 +58,7 @@ package plugin.examples.reflections
 		
 		override protected function initialize():void 
 		{
-			addChild( new Stats() );
+			//addChild( new Stats() );
 			camera.position = new APoint( 0, -2, -7 );
 			clearColor = new Color( 0, 0, 0, 0 );
 			

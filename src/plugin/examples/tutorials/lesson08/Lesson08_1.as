@@ -1,4 +1,4 @@
-package plugin.examples.tutorials.lesson8 
+package plugin.examples.tutorials.lesson08 
 {
 	import io.plugin.core.graphics.Color;
 	import io.plugin.math.algebra.APoint;
@@ -10,7 +10,6 @@ package plugin.examples.tutorials.lesson8
 	import zest3d.controllers.KeyframeController;
 	import zest3d.datatypes.Transform;
 	import zest3d.effects.local.PhongEffect;
-	import zest3d.effects.local.TextureEffect;
 	import zest3d.geometry.SkyboxGeometry;
 	import zest3d.primitives.TorusPrimitive;
 	import zest3d.resources.Texture2D;
@@ -22,7 +21,7 @@ package plugin.examples.tutorials.lesson8
 	 * ...
 	 * @author Gary Paluk - http://www.plugin.io
 	 */
-	public class Lesson8 extends Zest3DApplication 
+	public class Lesson08_1 extends Zest3DApplication 
 	{
 		[Embed(source = "../../../../assets/atf/crate_wood.atf", mimeType = "application/octet-stream")]
 		private const CHECKED_ATF:Class;
@@ -50,11 +49,12 @@ package plugin.examples.tutorials.lesson8
 			
 			var torus:TorusPrimitive = new TorusPrimitive(phongEffect, true, true, 64, 32);
 			
-			_keyframeController = new KeyframeController( 0, 0, 4, 0, new Transform() );
+			_keyframeController = new KeyframeController( 0, 3, 4, 4, new Transform() );
 			_keyframeController.minTime = 0;
 			_keyframeController.maxTime = 9000;
-			_keyframeController.repeat = RepeatType.CYCLE;
+			_keyframeController.repeat = RepeatType.WRAP;
 			
+			// rotations
 			var m0:HMatrix = new HMatrix().rotation( AVector.UNIT_Z, (Math.PI / 180) * 90);
 			var m1:HMatrix = new HMatrix().rotation( AVector.UNIT_Y, (Math.PI / 180) * 180);
 			var m2:HMatrix = new HMatrix().rotation( AVector.UNIT_X, (Math.PI / 180) * 180);
@@ -67,6 +67,24 @@ package plugin.examples.tutorials.lesson8
 			_keyframeController.rotationTimes[1] = 3000;
 			_keyframeController.rotationTimes[2] = 6000;
 			_keyframeController.rotationTimes[3] = 9000;
+			
+			// scales
+			_keyframeController.scales[0] = 0.5;
+			_keyframeController.scales[1] = 0.1;
+			_keyframeController.scales[2] = 2;
+			_keyframeController.scales[3] = 1;
+			_keyframeController.scaleTimes[0] = 0;
+			_keyframeController.scaleTimes[1] = 3000;
+			_keyframeController.scaleTimes[2] = 6000;
+			_keyframeController.scaleTimes[3] = 9000;
+			
+			//translations
+			_keyframeController.translations[0] = new APoint( -5, -2, 0 );
+			_keyframeController.translations[1] = new APoint(  2, -2, 0 );
+			_keyframeController.translations[2] = new APoint(  2,  2, 2 );
+			_keyframeController.translationTimes[0] = 0;
+			_keyframeController.translationTimes[1] = 4500;
+			_keyframeController.translationTimes[2] = 9000;
 			
 			torus.addController( _keyframeController );
 			

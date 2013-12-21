@@ -1,4 +1,4 @@
-package plugin.examples.tutorials.lesson3 
+package plugin.examples.tutorials.lesson03 
 {
 	import zest3d.applications.Zest3DApplication;
 	import zest3d.effects.local.ReflectionEffect;
@@ -9,7 +9,7 @@ package plugin.examples.tutorials.lesson3
 	 * ...
 	 * @author Gary Paluk - http://www.plugin.io
 	 */
-	public class Lesson3 extends Zest3DApplication 
+	public class Lesson03 extends Zest3DApplication 
 	{
 		[Embed(source="../../../../assets/atfcube/skybox.atf", mimeType="application/octet-stream")]
 		private var SKYBOX_ATF:Class;
